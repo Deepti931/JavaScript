@@ -1,0 +1,20 @@
+h3{
+    color:coral;
+    font-size: 50px;;
+}
+li{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+p{
+    color:greenyellow;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+h1{
+    color:red;
+    font: size 50px;
+}
+table{
+    background-color: rosybrown;
+    color:black;
+}
