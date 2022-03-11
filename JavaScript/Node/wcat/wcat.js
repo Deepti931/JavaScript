@@ -10,13 +10,20 @@ console.log(inputArr);
 
 let filesArr=[];
 let optionsArr =[];
-//placed files path in filesarr
+//==========> placed files path in filesarr <==========
 for(let i=0;i<inputArr.length;i++){
+    let firstChar=inputArr[i].charAt(0);
+    //console.log(firstChar);
+    if(firstChar=='-'){
+        optionsArr.push(inputArr[i]);
+    }else{
+        filesArr.push(inputArr[i]);
+    }
     filesArr.push(inputArr[i]);
 }
 console.log("files to be read are"+filesArr);
 
-//check if allthe files are present
+//==========> check if all the files are present <==========
 for(let i=0;i<filesArr.length;i++){
     let doesExist=fs.existsSync(filesArr[i]);
     if(!doesExist){
@@ -25,10 +32,13 @@ for(let i=0;i<filesArr.length;i++){
     }
 }
 
-//content reading and appending starts
+//==========> content reading and appending starts <========
 let content="";
 for(let i=0;i<filesArr.length;i++){
     let fileContent=fs.readFileSync(filesArr[i]);
     content+=fileContent+"\n";
 }
 console.log(content);
+
+let contentArr=content.split("\n");
+console.log(contentArr);
