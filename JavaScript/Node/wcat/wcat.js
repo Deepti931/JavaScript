@@ -9,17 +9,17 @@ console.log(inputArr);
 
 
 let filesArr=[];
-let optionsArr =[];
+let optionArr =[];
 //==========> placed files path in filesarr <==========
 for(let i=0;i<inputArr.length;i++){
     let firstChar=inputArr[i].charAt(0);
     //console.log(firstChar);
     if(firstChar=='-'){
-        optionsArr.push(inputArr[i]);
+        optionArr.push(inputArr[i]);
     }else{
         filesArr.push(inputArr[i]);
     }
-    filesArr.push(inputArr[i]);
+    //filesArr.push(inputArr[i]);
 }
 console.log("files to be read are"+filesArr);
 
@@ -36,14 +36,15 @@ for(let i=0;i<filesArr.length;i++){
 let content="";
 for(let i=0;i<filesArr.length;i++){
     let fileContent=fs.readFileSync(filesArr[i]);
-    content+=fileContent+"\n";
+    content+=fileContent+"\n";//"\r\n" for window laptop
 }
 console.log(content);
 
-let contentArr=content.split("\n");
+let contentArr=content.split("\n");//"\r\n" for window laptop
 console.log(contentArr);
 
 //check if -s is pesent or not
+let tempArr=[];
 let isSPresent=optionArr.includes("-s");
 if(isSPresent){
     for(let i=0;i<contentArr.length;i++){
@@ -54,7 +55,7 @@ if(isSPresent){
             contentArr[i]=null;
         }
     }
-    let tempArr=[];
+    
     //push everything in contentArr except null
     for(let i=0;i<contentArr.length;i++){
         if(tempArr[i]!=null){
@@ -63,5 +64,56 @@ if(isSPresent){
     }
     console.log("data after removing extra lines\n",tempArr);
 }
+
+console.log(contentArr);
+
+
+let indexOfN = optionArr.indexOf("-n");
+let indexOfB= optionArr.indexOf("-b");
+//if -n or -b is not found,-1 is returned
+
+let finalOption="";
+//if both -n and -b are present
+if(indexOfN!=-1 && indexOfB!=-1){
+    if(indexOfN< indexOfB){
+        finalOption="-n";
+    }else{
+        finalOption="-b";
+    }
+}
+//either -n or -b is present
+else{
+    if(indexOfN != -1){
+        finalOption="-n";
+    }
+    else if(indexOfB != -1){
+        finalOption="-b";
+    }
+}
+
+//calling of functions by evaluating finalOptions
+if(finalOption=="-n"){
+    modifyContentByN();
+}
+else if(finalOption=="-b"){
+    modifyContentByB();
+}
+
+function modifyContentByN(){
+    for(let i=0;i< contentArr.length;i++){
+        contentArr[i]=(i+1) +") "+contentArr[i];
+    }
+}
+function modifyContentByB(){
+    let count =1;
+    for(let i=0;i< contentArr.length;i++){
+        if(contentArr[i]!=""){
+            contentArr[i]=count +") "+contentArr[i];
+            count++ ;
+        }
+    }
+
+}
+
 
 console.log(contentArr);
