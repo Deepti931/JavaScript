@@ -28,7 +28,8 @@ for(let i=0;i<filesArr.length;i++){
     let doesExist=fs.existsSync(filesArr[i]);
     if(!doesExist){
         console.log("Files does not exist");
-        return;
+        //return;
+        process.exit();
     }
 }
 
