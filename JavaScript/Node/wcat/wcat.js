@@ -36,11 +36,11 @@ for(let i=0;i<filesArr.length;i++){
 let content="";
 for(let i=0;i<filesArr.length;i++){
     let fileContent=fs.readFileSync(filesArr[i]);
-    content+=fileContent+"\n";//"\r\n" for window laptop
+    content+=fileContent+"\r\n";//"\r\n" for window laptop
 }
 console.log(content);
 
-let contentArr=content.split("\n");//"\r\n" for window laptop
+let contentArr=content.split("\r\n");//"\r\n" for window laptop
 console.log(contentArr);
 
 //check if -s is pesent or not
