@@ -42,3 +42,26 @@ console.log(content);
 
 let contentArr=content.split("\n");
 console.log(contentArr);
+
+//check if -s is pesent or not
+let isSPresent=optionArr.includes("-s");
+if(isSPresent){
+    for(let i=0;i<contentArr.length;i++){
+        if(contentArr[i]=="" && contentArr[i-1]==""){
+            contentArr[i]=null;
+        }
+        else if(contentArr[i]==""&& contentArr[i-1]==null){
+            contentArr[i]=null;
+        }
+    }
+    let tempArr=[];
+    //push everything in contentArr except null
+    for(let i=0;i<contentArr.length;i++){
+        if(tempArr[i]!=null){
+            tempArr.push(contentArr[i]);
+        }
+    }
+    console.log("data after removing extra lines\n",tempArr);
+}
+
+console.log(contentArr);
